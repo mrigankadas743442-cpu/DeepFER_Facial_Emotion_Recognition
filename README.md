@@ -190,23 +190,6 @@ The project provides:
 - Confusion Matrix
  <img width="658" height="547" alt="image" src="https://github.com/user-attachments/assets/253b40fd-6e24-45a6-b11e-69662b294624" />
 
-- Classification Report
-
-              precision    recall  f1-score   support
-
-       angry       0.53      0.55      0.54       958
-     disgust       0.44      0.29      0.35       111
-        fear       0.49      0.27      0.35      1024
-       happy       0.84      0.86      0.85      1774
-     neutral       0.52      0.65      0.58      1233
-         sad       0.46      0.52      0.49      1247
-    surprise       0.75      0.72      0.73       831
-
-    accuracy                           0.61      7178
-   macro avg       0.58      0.55      0.56      7178
-weighted avg       0.61      0.61      0.61      7178
-
-
 - Real-Time Webcam Prediction
 <img width="1280" height="720" alt="capture_6" src="https://github.com/user-attachments/assets/615445a4-6cdc-4a4b-a521-121c8d36430b" />
 
