@@ -1,0 +1,207 @@
+
+ 
+LABMENTIX
+ AI/ML Internship Project Report
+DeepFER
+Facial Emotion Recognition using Deep Learning
+Submitted By
+Mriganka Das
+Project Type: Deep Learning | Contribution: Individual
+AI/ML Internship Program — Labmentix
+2026
+ 
+Certificate
+This is to certify that the project report entitled “DeepFER: Facial Emotion Recognition using Deep Learning” has been carried out by Mriganka Das as part of the internship program undertaken with Labmentix.
+The work presented in this report is an authentic record of the project work carried out under the guidance and supervision of Labmentix, and it has not been submitted elsewhere for the award of any other qualification, to the best of our knowledge.
+It is further certified that the project involved the design, development, training, and evaluation of a custom Convolutional Neural Network for facial emotion recognition, along with the implementation of image-upload and real-time webcam-based emotion prediction modules.
+We wish the candidate every success in future endeavours.
+
+
+Date: ____________________
+Place: ____________________
+____________________________
+Program Mentor, Labmentix	____________________________
+Authorized Signatory, Labmentix
+
+
+
+
+
+Acknowledgement
+I would like to express my sincere gratitude to Labmentix for providing me with the opportunity to undertake this internship project and for the guidance and resources made available throughout its duration.
+I am thankful to the mentors and reviewers at Labmentix for their valuable feedback, technical guidance, and continuous encouragement, which greatly contributed to the successful completion of this project.
+I would also like to acknowledge the open-source community behind TensorFlow, Keras, OpenCV, and scikit-learn, whose tools and documentation formed the technical foundation of this project, as well as the creators of the FER-style facial emotion dataset used for model training and evaluation.
+Finally, I extend my heartfelt thanks to my family and friends for their constant support and encouragement throughout this internship.
+
+— Mriganka Das
+
+
+
+
+
+Abstract
+This project presents a Deep Learning-based facial emotion recognition system, DeepFER, developed using TensorFlow, Keras, and OpenCV. The system utilizes a grayscale facial image dataset representing seven human emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
+The project begins with dataset loading and exploration, followed by image preprocessing techniques such as resizing, normalization, and data augmentation to improve model generalization. A custom Convolutional Neural Network (CNN) architecture was designed with four convolutional blocks, batch normalization, max-pooling, dropout regularization, and fully connected layers to automatically learn discriminative facial features.
+The model was trained for 40 epochs using the Adam optimizer with an adaptive learning rate scheduler and model checkpointing to preserve the best-performing model. The trained network achieved a best validation accuracy of 62.45% and a test accuracy of 61.37%, demonstrating reliable performance on unseen facial images.
+Model performance was evaluated using accuracy and loss curves, a confusion matrix, and a classification report to analyze prediction quality across all emotion classes. The trained model was saved for future use and integrated into an emotion prediction module capable of classifying emotions from uploaded facial images. A real-time webcam emotion detection module was also implemented and tested using OpenCV in a local Python environment.
+Overall, this project demonstrates the practical application of deep learning for facial emotion recognition and highlights its potential use in healthcare, education, customer experience analysis, driver monitoring, and intelligent human-computer interaction systems.
+
+
+
+
+Table of Contents
+Certificate	i
+Acknowledgement	ii
+Abstract	iii
+Table of Contents	iv
+ Introduction	1
+ Problem Statement	2
+Objectives …………………………………………………………………………………………………………………………… 3
+Scope of The Project …………………………………………………………………………………………………………... 4
+Dataset Description	5
+ Methodology	9
+ Model Architecture	12
+ Experimental Results	16
+ Emotion Prediction from Uploaded Image	23
+Real-Time Webcam Emotion Detection	25
+ Applications	27
+ Future Scope	28
+Conclusion	29
+References	30
+Appendix	31
+ 
+ Introduction
+Facial expressions are one of the most effective forms of non-verbal communication, allowing humans to convey emotions such as happiness, sadness, anger, fear, surprise, disgust, and neutrality. The ability to automatically recognize these emotions has become an important area of research in the fields of Artificial Intelligence (AI), Machine Learning (ML), and Computer Vision. Facial Emotion Recognition (FER) systems enable computers to interpret human emotions from facial images or videos, making human-computer interaction more natural, intelligent, and user-friendly.
+With recent advancements in Deep Learning, Convolutional Neural Networks (cnns) have significantly improved the accuracy of image classification tasks, including facial emotion recognition. Unlike traditional machine learning methods that rely on manually extracted features, CNNS automatically learn meaningful facial features directly from images, resulting in better performance and robustness.
+This project, DEEPFER – Facial Emotion Recognition using Deep Learning, presents a CNN-based system capable of recognizing seven fundamental human emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise. The model is trained on grayscale facial images of size 48 × 48 pixels using image preprocessing and data augmentation techniques to improve its generalization capability. After training, the model predicts emotions from uploaded facial images and also performs real-time emotion detection using a webcam.
+The developed system integrates several technologies, including PYTHON, TENSORFLOW, KERAS, OPENCV, NUMPY, and GOOGLE COLAB, for model development, training, evaluation, and deployment. The webcam application captures facial images, detects faces using the Haar Cascade classifier, preprocesses the detected face, and predicts the corresponding emotion along with a confidence score.
+The experimental results demonstrate that the proposed CNN model achieves a test accuracy of 61.37%, successfully recognizing facial expressions under various conditions. Although certain emotions such as Fear and Disgust remain challenging due to similarities in facial appearance and limited training samples, the model performs well for emotions like Happy and Surprise, indicating its effectiveness for practical emotion recognition tasks.
+Facial Emotion Recognition has numerous real-world applications, including human-computer interaction, healthcare, education, driver monitoring systems, customer behavior analysis, security surveillance, and mental health assessment. This project provides a practical implementation of deep learning techniques for emotion recognition and serves as a foundation for future improvements, such as mobile deployment, multi-face detection, cloud-based inference, and lightweight models for edge devices.
+
+Problem Statement
+
+Facial expressions play a crucial role in human communication by conveying emotions such as happiness, sadness, anger, fear, surprise, disgust, and neutrality. Automatically recognizing these emotions is challenging due to variations in facial appearance, lighting conditions, head poses, occlusions, and similarities between different expressions.
+Traditional machine learning techniques rely on handcrafted features, which often fail to capture complex facial patterns and provide limited recognition accuracy. Therefore, there is a need for an intelligent system capable of automatically extracting facial features and accurately classifying human emotions.
+The objective of this project is to develop a Convolutional Neural Network (CNN)-based facial emotion recognition system that can classify facial expressions into seven emotion categories using the image dataset. The system aims to improve emotion recognition performance through image preprocessing, data augmentation, and deep learning techniques while providing a foundation for real-world applications such as healthcare, education, human-computer interaction, and smart surveillance.
+
+
+
+
+
+
+
+
+
+
+
+ Objectives
+•	To design and implement a custom Convolutional Neural Network architecture capable of classifying facial images into seven emotion categories.
+•	To preprocess and augment the facial emotion dataset in order to improve the model's ability to generalize to unseen images.
+•	To train the CNN model using appropriate optimization techniques, callbacks, and regularization strategies to reduce overfitting.
+•	To evaluate the trained model using standard classification metrics, including accuracy, precision, recall, F1-score, and confusion matrix analysis.
+•	To build a functional module for predicting the emotion of a user-uploaded facial image.
+•	To implement a real-time webcam-based facial emotion detection module using OpenCV.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scope of The Project
+The scope of this project covers the complete lifecycle of a deep learning-based image classification system — from dataset acquisition and preprocessing through model design, training, evaluation, and deployment for both static image prediction and real-time webcam-based detection. The project focuses specifically on grayscale facial images resized to 48 × 48 pixels, categorized into seven standard emotion classes: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
+The project does not extend to multi-face detection in group photographs, emotion intensity estimation, or cross-cultural expression analysis, all of which are identified as potential directions for future work. The system is designed primarily as a proof-of-concept and educational demonstration of applied deep learning rather than a production-grade commercial product.
+ Project Contributions
+•	Designed a custom four-block CNN architecture with Batch Normalization, Max Pooling, and Dropout layers tailored specifically for low-resolution grayscale facial images.
+•	Implemented an in-pipeline data augmentation strategy (random flipping, rotation, zoom, and contrast adjustment) directly within the model to improve generalization without expanding the dataset on disk.
+•	Applied a combination of EarlyStopping, ModelCheckpoint, and ReduceLROnPlateau callbacks to achieve stable and efficient model convergence.
+•	Performed a thorough quantitative evaluation of the trained model using a confusion matrix and a detailed classification report across all seven emotion classes.
+•	Built a working image-upload emotion prediction module and a real-time webcam-based emotion detection module using OpenCV.
+
+ Dataset Description
+ Dataset Name
+The project uses a facial emotion image dataset structured in the widely recognized FER format, organized into class-labelled subfolders for training and testing. The dataset was accessed through Google Drive and loaded directly into the Google Colab environment for model development.
+ Number of Images
+The complete training directory contains 28,736 grayscale facial images across seven emotion classes. Using an 80:20 split, this directory was further divided into a training subset and a validation subset. A separate, independent directory was used for testing the final trained model.
+Table 1: Overview of dataset partitioning used for model development
+Partition	Number of Images	Purpose
+Training Set	22,989	Used to train the CNN model
+Validation Set	5,747	Used to monitor performance during training
+Test Set	7,178	Used for final, independent performance evaluation
+ Emotion Classes
+The dataset is organized into seven emotion classes: angry, disgust, fear, happy, neutral, sad, and surprise. These classes were automatically identified from the folder structure using the class_names attribute of the TensorFlow image dataset loader, confirming that the dataset was correctly structured and labelled.
+ Image Size
+All images in the dataset are loaded and resized to 48 × 48 pixels in grayscale (single-channel) format. This resolution and colour mode are consistent with the standard FER benchmark and were chosen to keep the model computationally efficient while retaining sufficient facial detail for emotion classification.
+ Data Distribution
+The class distribution of the training dataset is visualized in Figure 2 below and summarized in Table 2. The distribution shows a clear class imbalance, with the Happy class containing the largest number of samples (7,223 images) and the Disgust class containing the fewest (436 images).
+Table 2: Training dataset class distribution by emotion category
+Emotion Class	Number of Images
+Angry	4,011
+Disgust	436
+Fear	4,097
+Happy	7,223
+Neutral	4,965
+Sad	4,831
+Surprise	3,173
+ 
+Figure 1: Training dataset class distribution across the seven emotion categories
+This imbalance is an important consideration during model development, as it can bias the classifier toward predicting majority classes such as Happy more accurately than minority classes such as Disgust. Techniques such as data augmentation, class weighting, or oversampling can help reduce the impact of this imbalance, and the model's per-class performance was closely examined during evaluation (see Chapter 7) to assess how well it handled the imbalance.
+ Sample Images
+A random sample of training images, together with their corresponding emotion labels, is shown in Figure 1. Each image is a 48 × 48 grayscale facial photograph associated with one of the seven emotion classes. This visualization was used to confirm that the dataset had been loaded correctly and that image-label pairs were mapped as expected before proceeding to preprocessing and model training.
+ 
+Figure 2: Sample grayscale facial images from the training dataset with corresponding emotion labels
+ Data Preprocessing
+Data preprocessing is an essential step in deep learning that prepares the image dataset for model training. It ensures that all images have a consistent format and improves the efficiency of the learning process. The following preprocessing steps were applied to the dataset:
+•	Image Resizing: All facial images are resized to 48 × 48 pixels, which is the required input size for the CNN model.
+•	Normalization: Pixel values are scaled from the range 0–255 to 0–1 by dividing each pixel value by 255. This helps the model converge faster during training.
+•	Batching: Images are grouped into batches of 32 to optimize memory usage and speed up training.
+•	Caching: The dataset is cached in memory to reduce loading time during each training epoch.
+•	Shuffling: Training images are randomly shuffled before each epoch to prevent the model from learning the order of the dataset and to improve generalization.
+•	Prefetching: TensorFlow prefetching overlaps data loading with model execution, resulting in faster and more efficient training.
+ Data Augmentation
+Data augmentation artificially increases the diversity of the training images without collecting new data, which helps the model generalize better to unseen facial expressions, reduces overfitting, and improves robustness against slight variations in face orientation and scale. In this project, the following augmentation operations were applied directly within the model pipeline, using TensorFlow's Keras preprocessing layers, while preserving the corresponding emotion labels:
+•	Random Horizontal Flip: Mirrors the image horizontally with a certain probability.
+•	Random Rotation: Rotates the image by up to 15% of a full rotation.
+•	Random Zoom: Zooms into the image by up to 15%.
+•	Random Contrast: Randomly adjusts the image contrast by up to 10%.
+Because these augmentation layers were embedded directly inside the Sequential model (rather than applied as a separate preprocessing stage), they are active only during training and are automatically bypassed during validation, testing, and inference — ensuring that the model is evaluated on unmodified images.
+
+
+
+ Methodology
+This chapter describes the end-to-end methodology followed in the development of the DeepFER facial emotion recognition system. The overall workflow proceeds sequentially from raw data collection through to real-time deployment, as illustrated in Figure 3.
+ Overall Workflow
+Dataset
+↓
+Preprocessing
+↓
+Data Augmentation
+↓
+CNN Model
+↓
+Training
+↓
+Validation
+↓
+Testing
+↓
+Emotion Prediction
+↓
+Real-Time Webcam Detection
+Figure 3: End-to-end methodology workflow of the DeepFER system
+ Stage-wise Explanation
+Dataset: The workflow begins with the acquisition of the facial emotion image dataset, organized into class-labelled folders for training and testing. The dataset was mounted from Google Drive into the Google Colab notebook environment, and separate directory paths were defined for the training and testing partitions.
+Preprocessing: The raw images were loaded using TensorFlow's image_dataset_from_directory utility, which automatically infers class labels from the folder structure. During loading, all images were resized to 48 × 48 pixels and converted to grayscale. The training directory was further split into training (80%) and validation (20%) subsets using a fixed random seed to ensure reproducibility. Pixel values were then normalized from the 0–255 range to 0–1 using a Rescaling layer, and the datasets were cached, shuffled, and prefetched to optimize the training pipeline.
+Data Augmentation: To improve the model's ability to generalize, a data augmentation block consisting of random horizontal flipping, rotation, zoom, and contrast adjustment was integrated directly into the model architecture as the first processing stage. This ensured that the model was exposed to a wider variety of facial orientations and lighting conditions during training, without requiring additional images to be stored on disk.
+CNN Model: A custom Convolutional Neural Network was designed to progressively extract low-level and high-level facial features. The architecture, detailed fully in Chapter 6, consists of four convolutional blocks with increasing filter depth, followed by a Global Average Pooling layer and fully connected classification layers.
+Training: The model was compiled using the Adam optimizer with an initial learning rate of 0.0005 and the Sparse Categorical Crossentropy loss function, which is appropriate for multi-class classification problems with integer-encoded labels. Training was carried out for a maximum of 40 epochs on the training dataset, with performance monitored on the validation dataset after every epoch.
+Validation: After each training epoch, the model's performance was evaluated on the held-out validation set. Validation accuracy and validation loss were used to monitor the model's ability to generalize beyond the training data and to guide the callback mechanisms (EarlyStopping, ModelCheckpoint, and ReduceLROnPlateau) described in Chapter 7.
+Testing: Once training was complete, the best-performing model (restored based on validation performance) was evaluated on a completely independent test dataset of 7,178 images that had not been used during training or validation. This provided an unbiased estimate of the model's real-world generalization performance.
+Emotion Prediction: A dedicated prediction module was built to allow a user to upload a facial image, which is then preprocessed (converted to grayscale, resized to 48 × 48, and normalized) in the same manner as the training data before being passed through the trained model to obtain a predicted emotion label and confidence score.
+Real-Time Webcam Detection: Finally, a real-time emotion detection module was implemented using OpenCV to capture live video frames from a webc
