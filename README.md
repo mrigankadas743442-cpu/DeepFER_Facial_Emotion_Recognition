@@ -11,6 +11,16 @@ A Deep Learning based Facial Emotion Recognition System capable of predicting **
 
 </div>
 
+# 🚀 Live Demo
+
+👉 **[Try DeepFER – Facial Emotion Recognition](https://deepfer-emotion-recognition.streamlit.app/)**
+
+Upload a facial image and the DeepFER CNN model will analyze it and predict one of seven emotions with a confidence score.
+
+---
+
+# DeepFER – Facial Emotion Recognition
+
 ---
 
 # 📌 Project Overview
